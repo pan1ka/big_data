@@ -8,9 +8,11 @@ import java.util.stream.Collectors;
  
 
 public class Main {
-
+/*
+ * Mapper class, output key - value pairs from the file 
+ * word count implementation for map reduce computation model
+ * */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		try {
 			String inputString = Utils.readFile("input/testDataForW1D1.txt");
 			//System.out.println(inputString);
@@ -26,13 +28,13 @@ public class Main {
 									return false;
 								}
 								
-								if(!Utils.isAlpha(e)) { // delete abc123 non-words
+								if(!Utils.isAlpha(e)) { // delete abc123 like non-words
 									return false;
 								}
 								
 								return true;
 							})
-					.map(e->new Mpair(e.toLowerCase(), 1)) // add new Pair element
+					.map(e->(new Mpair<String, Integer>(e.toLowerCase(), 1))) // add new Pair element
 					.collect(Collectors.toList());
 			
 			lastSplitList.sort(new MpairComparator());
