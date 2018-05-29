@@ -15,8 +15,6 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			String inputString = Utils.readFile("input/testDataForW1D1.txt");
-			//System.out.println(inputString);
-			
 			
 			String[] splited = inputString.split("[\\s+]|[-]"); // split by space and hyphen
 			List<String> splitList = Arrays.asList(splited);
@@ -35,13 +33,10 @@ public class Main {
 								return true;
 							})
 					.map(e->(new Mpair<String, Integer>(e.toLowerCase(), 1))) // add new Pair element
+					.sorted(new MpairComparator())
 					.collect(Collectors.toList());
 			
-			lastSplitList.sort(new MpairComparator());
-			
-			lastSplitList.forEach(e->{
-				System.out.println(e);
-			});
+			lastSplitList.forEach(System.out::println);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
