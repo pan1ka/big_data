@@ -43,7 +43,7 @@ public class Main {
 	}
 
 	public List<Mpair<String, Integer>> mapper(String inputString) {
-		String[] splited = inputString.split("[\\s+]|[-]|[.]"); // split by space and hyphen
+		String[] splited = inputString.split("[\\s+]|[-]|[.]"); // split by space, hyphen and dot
 		List<String> splitList = Arrays.asList(splited);
 
 		List<Mpair<String, Integer>> lastSplitList = splitList.stream().map(e -> Utils.convertToAlpha(e)) // filter ",.
