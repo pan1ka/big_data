@@ -1,16 +1,16 @@
-package lab3.multimapreducer;
+package lab4.inmappercombiner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class WordCount {
+public class InMapperWordCount {
 	int reducerCount = 4; // temporary
 	int mapperCount = 3;
 
 	public static void main(String[] args) {
-		WordCount m = new WordCount();
+		InMapperWordCount m = new InMapperWordCount();
 		String inputString = Utils.readFile("input/lab3test.txt");
 		// TODO specify number of reducers/mappers
+		
 		System.out.println(String.format("Number of Input-Splits: %d", m.mapperCount));
 		System.out.println(String.format("Number of Reducers: %d", m.reducerCount));
 		
@@ -90,16 +90,22 @@ public class WordCount {
 			
 			// output logger 
 			for (int q = 0; q < reducerLog.length; q++) {
-				System.out.println(String.format("\nPairs send from Mapper  %d to Reducer %d ", i, q));
+				System.out.println(String.format("\nPairs send from Mapper  %d to Reducer %d: ", i, q));
 				reducerLog[q].stream().forEach(System.out::println);
 			}
 		}
 		
-		Arrays.stream(tred).forEach(e->{e.stream().sorted(new GpairComparator());});
+		
+		 
+		for (ArrayList<GroupByPair<String, Integer>> reducer : tred) {
+			reducer.sort(new GpairComparator());
+		}
 		 
 	}
 	
+	 
 	
+	 
 	/**
 	 * splits input String for according to mapper numbers
 	 * 
